@@ -1,18 +1,9 @@
-.navbar-brand {
-  margin-top: 10%;
-  margin-bottom: 10%;
-}
-
-.container .navbar-brand {
-  margin-left: 15%; 
-}
 
 body {
-  text-align: center;
+ background-color: black;
 }
 
 .container { 
-  position:relative;
   width: 100%; 
   padding: 0;
 
@@ -21,6 +12,7 @@ body {
 .container video {
     position:relative;
     z-index:0;
+    height: 100%;
 }
 
 .jumbotron{
@@ -47,5 +39,4 @@ body {
   border-color: #B1B6A6;
   opacity: 1.0;
 }
-
 
