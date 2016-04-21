@@ -1,3 +1,42 @@
+
 body {
-	margin-top: 60px;
+ background-color: black;
 }
+
+.container { 
+  width: 100%; 
+  padding: 0;
+
+}
+
+.container video {
+    position:relative;
+    z-index:0;
+    height: 100%;
+}
+
+.jumbotron{
+    position:absolute;
+    top:30%;
+    left:30%;
+    z-index:1;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.form-inline  {
+  display: inline-block;
+  vertical-align: middle;
+/*  width: 100%;*/
+}
+
+.form-group, .join-group {
+  padding: 10px;
+  opacity: 1.0;
+}
+
+.btn-primary {
+  background-color: #819595;
+  border-color: #B1B6A6;
+  opacity: 1.0;
+}
+

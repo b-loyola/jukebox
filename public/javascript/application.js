@@ -27,15 +27,15 @@ function onPlayerReady(event) {
 // when video ends
 // function onPlayerStateChange(event) {
 //   if(event.data === 0) {
-	
-// 		player.loadVideoById(getNextVideoID() );
+  
+//    player.loadVideoById(getNextVideoID() );
 
 //   }
 // }
 // --------------------------
 function onPlayerStateChange(event) {
-	if(event.data === 0) {
-  	playNextVideo();
+  if(event.data === 0) {
+    playNextVideo();
   }
 }
 
@@ -52,33 +52,33 @@ function playNextVideo() {
 }
 // ----------------------------
 // function getNextVideoID() {
-// 	if(songCounter > playlist.length -1) {
-// 		songCounter = 0;
-// 	};
-// 	var nextSong = playlist[songCounter];
-// 	songCounter++;
-// 	return nextSong;
+//  if(songCounter > playlist.length -1) {
+//    songCounter = 0;
+//  };
+//  var nextSong = playlist[songCounter];
+//  songCounter++;
+//  return nextSong;
 // };
 
 $(document).ready(function() {
 
-	$(".add-song").on("click", function() {
+  $(".add-song").on("click", function() {
 
-		var songUrl = $("#addSong").val();
+    var songUrl = $("#addSong").val();
 
-		$.post(window.location.pathname, { link: songUrl },
-			// success result comes here
-			// update library list with result
-			function(result) { console.log(result);
-		})
-		.done(function() {
-			document.getElementById("success").innerHTML = "Song added to queue";
-		})
-		.fail(function() {
-			document.getElementById("success").innerHTML = "Failed to add song, please try a different url";
-		})
-		;
-		
-	});
+    $.post(window.location.pathname, { link: songUrl },
+      // success result comes here
+      // update library list with result
+      function(result) { console.log(result);
+    })
+    .done(function() {
+      document.getElementById("success").innerHTML = "Song added to queue";
+    })
+    .fail(function() {
+      document.getElementById("success").innerHTML = "Failed to add song, please try a different url";
+    })
+    ;
+    
+  });
 
 });
