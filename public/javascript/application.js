@@ -22,7 +22,7 @@ function onPlayerReady(event) {
 }
 
 // initialize song counter
-var songCounter = 1;
+// var songCounter = 1;
 
 // when video ends
 // function onPlayerStateChange(event) {
@@ -42,7 +42,7 @@ function onPlayerStateChange(event) {
 function playNextVideo() {
   $.ajax({
     method: 'get',
-    url: window.location.pathname + '/next', // <-- need to get the room id somehow
+    url: window.location.pathname + '/next', // <-- get '/rooms/:room_id/next'
     dataType: 'json',
     success: function(response) {
       // executed when AJAX call returns successfully
@@ -51,14 +51,14 @@ function playNextVideo() {
   });
 }
 // ----------------------------
-function getNextVideoID() {
-	if(songCounter > playlist.length -1) {
-		songCounter = 0;
-	};
-	var nextSong = playlist[songCounter];
-	songCounter++;
-	return nextSong;
-};
+// function getNextVideoID() {
+// 	if(songCounter > playlist.length -1) {
+// 		songCounter = 0;
+// 	};
+// 	var nextSong = playlist[songCounter];
+// 	songCounter++;
+// 	return nextSong;
+// };
 
 $(document).ready(function() {
 
