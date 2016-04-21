@@ -69,7 +69,7 @@ $(document).ready(function() {
     $.post(window.location.pathname, { link: songUrl },
       // success result comes here
       // update library list with result
-      function(result) { console.log(result);
+      function(result) { console.log(result["title"]);
     })
     .done(function() {
       document.getElementById("success").innerHTML = "Song added to queue";

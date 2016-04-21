@@ -1,6 +1,8 @@
 
 <%= erb :navbar %>
 
+
+
 <div class="embed-responsive embed-responsive-16by9">
 		<div id="player"></div>
 </div>
@@ -8,7 +10,7 @@
 <div class="form-inline">
 	<div class="form-group">
 		<input type="text" class="form-control" id="addSong" name="song_url" placeholder="Enter Youtube url here...">
-		<button type="submit" class="btn btn-primary add-song">Add Song</button>
+		<button type="submit" class="btn btn-primary add-song">Add Song <%= @title %></button>
 		<div id="success"></div>
 	</div>
 </div> 

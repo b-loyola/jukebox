@@ -9,6 +9,7 @@ require 'sinatra/activerecord'
 require 'sinatra/contrib/all' # Requires cookies, among other things
 
 require 'pry'
+require 'yt'
 
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
 APP_NAME = APP_ROOT.basename.to_s
@@ -22,6 +23,9 @@ configure do
   set :session_secret, ENV['SESSION_KEY'] || 'lighthouselabssecret'
 
   set :views, File.join(Sinatra::Application.root, "app", "views")
+
+  Yt.configure do |config|
+  config.api_key = 'AIzaSyAD71Zwc5pNp4EO1o8CL_V41jQstpgLPc4'
 end
 
 # Set up the database and models

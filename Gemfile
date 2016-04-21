@@ -10,6 +10,7 @@ gem 'sinatra-activerecord'
 
 gem 'puma'
 gem 'tux'
+gem 'yt', '~> 0.25.5'
 
 group :development, :test do
   gem 'pry'
