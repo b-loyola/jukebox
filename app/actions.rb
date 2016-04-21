@@ -21,5 +21,22 @@ post '/rooms/?' do
 end
 
 get '/rooms/:id/?' do
+	@room = Room.find(params[:id])
 	erb :'rooms/index'
 end
+
+get '/rooms/:room_id/next' do
+	content_type :json
+	{video_id: 'CxKWTzr-k6s'}.to_json
+end
+
+post '/rooms/:id/?' do
+	@room = Room.find(params[:id])
+	@song = @room.songs.new(url: params[:link])
+	if @song.save
+		json @song
+	else
+		status 400
+	end
+end
+
