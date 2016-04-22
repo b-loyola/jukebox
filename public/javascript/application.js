@@ -53,7 +53,7 @@ $(document).ready(function() {
 
   var firstSong = true;
 
-  $(".add-song").on("click", function() {
+  $("#add-song").on("click", function() {
 
     var songUrl = $("#addSong").val();
 
