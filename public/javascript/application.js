@@ -21,18 +21,7 @@ function onPlayerReady(event) {
   event.target.playVideo();
 }
 
-// initialize song counter
-// var songCounter = 1;
 
-// when video ends
-// function onPlayerStateChange(event) {
-//   if(event.data === 0) {
-  
-//    player.loadVideoById(getNextVideoID() );
-
-//   }
-// }
-// --------------------------
 function onPlayerStateChange(event) {
   if(event.data === 0) {
     playNextVideo();
@@ -50,15 +39,7 @@ function playNextVideo() {
     }
   });
 }
-// ----------------------------
-// function getNextVideoID() {
-//  if(songCounter > playlist.length -1) {
-//    songCounter = 0;
-//  };
-//  var nextSong = playlist[songCounter];
-//  songCounter++;
-//  return nextSong;
-// };
+
 
 $(document).ready(function() {
 
