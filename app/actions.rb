@@ -40,7 +40,6 @@ get '/rooms/:id/?' do
 	end
 end
 
-
 post '/rooms/:room_id/songs' do
 	@room = Room.find(params[:room_id])
 	@song = @room.songs.new(url: params[:song_url])
@@ -51,11 +50,18 @@ post '/rooms/:room_id/songs' do
 	end
 end
 
-get '/rooms/:room_id/next' do
-	room = Room.find(params[:room_id])
-	song = room.next_song
+get '/rooms/:room_id/songs/next' do
 	content_type :json
-	{video_id: song.url, title: song.title}.to_json
+	room = Room.find(params[:room_id])
+	song = nil
+	# binding.pry
+	if room.next_song
+		song = room.next_song
+		room.increment_counter
+	else
+		song = room.songs.sample
+	end
+	{song: song}.to_json
 end
 
 post '/rooms/:id/?' do
@@ -68,4 +74,30 @@ post '/rooms/:id/?' do
 		status 400
 	end
 end
+
+get '/rooms/:id/song/?' do
+	content_type :json
+	room = Room.find(params[:id])
+	song = room.songs[0]
+	room.increment_counter
+	{song: song}.to_json
+end
+
+get '/rooms/:room_id/songs/current' do
+	content_type :json
+	room = Room.find(params[:room_id])
+	song = room.current_song
+	# binding.pry
+	if song
+		{song: song}.to_json
+	end
+end
+
+
+
+
+
+
+
+
 

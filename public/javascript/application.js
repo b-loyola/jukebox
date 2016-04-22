@@ -1,18 +1,16 @@
 // create youtube player
 var player;
-function onYouTubePlayerAPIReady() {
-
-  console.log("I'm ready");
 
 
-}
+// function onYouTubePlayerAPIReady() {
+// }
 
-function loadVideo(videoName) {
-
+// starts player and loads video
+function loadVideo(videoCode) {
   player = new YT.Player('player', {
     height: '390',
     width: '640',
-    videoId: videoName,
+    videoId: videoCode,
     events: {
       'onReady': onPlayerReady,
       'onStateChange': onPlayerStateChange
@@ -26,31 +24,34 @@ function onPlayerReady(event) {
 }
 
 function onPlayerStateChange(event) {
-  console.log("inside onPlayerStateChange", event)
   if(event.data === 0) {
+    console.log("inside onPlayerStateChange");
     playNextVideo();
   }
 }
 
 function playNextVideo() {
-  console.log("inside playNextVideo")
+  console.log("inside playNextVideo");
   $.ajax({
     method: 'get',
-    url: window.location.pathname + '/next', // <-- get '/rooms/:room_id/next'
+    url: window.location.pathname + '/songs/next', // <-- get '/rooms/:room_id/next'
     dataType: 'json',
-    success: function(response) {
-      // executed when AJAX call returns successfully
-
-      $("#song_name").text(response["title"]);
-      player.loadVideoById(response['video_id'] );
-    }
+  }).then(function success(result) {
+    console.log("inside ajax playNextVideo success");
+    console.log(result);
+    player.loadVideoById(result.song.url);
+    $("#song_name").text(result.song.title);
+  }, function errorAdd(err){
+    console.log("inside ajax playNextVideo error");
   });
 }
 
 
+
+
 $(document).ready(function() {
 
-  var songCounter = 0;
+  var firstSong = true;
 
   $(".add-song").on("click", function() {
 
@@ -61,13 +62,14 @@ $(document).ready(function() {
       method: 'post',
       data: {link: songUrl}
     }).then(function successAdd(result){
+
       $('#success').text("Song added to queue");
       var songId = result.song.url;
-      if(songCounter === 0){
-        loadVideo(songId);
-        songCounter++;
-      } else {
 
+      if(firstSong){
+        loadVideo(songId);
+        $("#song_name").text(result.song.title);
+        firstSong = false;
       }
 
     }, function errorAdd(err){
