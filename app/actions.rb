@@ -1,5 +1,5 @@
 # Homepage (Root path)
-require "yt"
+
 
 get '/' do
 	redirect '/rooms'
@@ -27,20 +27,17 @@ end
 
 get '/rooms/:room_id/next' do
 	room = Room.find(params[:room_id])
-	song_id = room.next_song_id
+	song = room.next_song
 	content_type :json
-	{video_id: song_id }.to_json
+	{video_id: song.url, title: song.title}.to_json
 end
 
 post '/rooms/:id/?' do
 	content_type :json
 	room = Room.find(params[:id])
 	song = room.songs.new(url: params[:link])
-	
 	if song.save
-		video = Yt::Video.new id: song.url
-		binding.pry
-		{song: song, title: video.title}.to_json
+		{song: song}.to_json
 	else
 		status 400
 	end

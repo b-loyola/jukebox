@@ -25,7 +25,8 @@ configure do
   set :views, File.join(Sinatra::Application.root, "app", "views")
 
   Yt.configure do |config|
-  config.api_key = 'AIzaSyAD71Zwc5pNp4EO1o8CL_V41jQstpgLPc4'
+    config.api_key = 'AIzaSyBkfUsw0XxnLWdaAnmIpTadS09QPfdIeXo'
+  end
 end
 
 # Set up the database and models

@@ -6,6 +6,7 @@ class Song < ActiveRecord::Base
 
 	def convert_url
 		self.url = url[/(youtu(?:\.be|be\.com)\/(?:.*v(?:\/|=)|(?:.*\/)?)([\w'-]+))/i, 2]
+    self.title = Yt::Video.new(id: self.url).title
 	end
 	
 end
