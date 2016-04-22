@@ -1,7 +1,7 @@
 class Room < ActiveRecord::Base
 	has_many :songs, dependent: :destroy
 
-	validates :name, presence: true, uniqueness: true
+	# validates :name, presence: true, uniqueness: true
 
 	def next_song
 		current_song = songs[song_counter]

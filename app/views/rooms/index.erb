@@ -1,16 +1,12 @@
 <%= erb :navbar %>
 
-<div class="embed-responsive embed-responsive-16by9">
-		<div id="player"></div>
-</div>
+<% if session[:host] == @room.id %>
+	<%= erb :'rooms/player' %>
+	<%= erb :'rooms/_song_submit' %>
+  <h3 id="song_name"> Song Title Unavailable</h3>
+<% else %>
+	<%= erb :'rooms/_song_submit' %>
+<% end %>
 
-<div class="form-inline">
-	<div class="form-group">
-		<input type="text" class="form-control" id="addSong" name="song_url" placeholder="Enter Youtube url here...">
-		<button type="submit" class="btn btn-primary add-song">Add Song <%= @title %></button>
-		<div id="success"></div>
-	</div>
-</div> 
 
-<h3 id="song_name"> Song Title Unavailable</h3>
 
