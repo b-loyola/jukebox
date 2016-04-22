@@ -1,5 +1,3 @@
-<%= erb :navbar %>
-
 <% if session[:host] == @room.id %>
 	<%= erb :'rooms/player' %>
 	<%= erb :'rooms/_song_submit' %>
