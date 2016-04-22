@@ -35,6 +35,9 @@ function playNextVideo() {
     dataType: 'json',
     success: function(response) {
       // executed when AJAX call returns successfully
+
+      // TODO: Here you should use the song title and display it response["title"]
+      $("#song_name").text(response["title"]);
       player.loadVideoById(response['video_id'] );
     }
   });
@@ -50,7 +53,7 @@ $(document).ready(function() {
     $.post(window.location.pathname, { link: songUrl },
       // success result comes here
       // update library list with result
-      function(result) { console.log(result);
+      function(result) { console.log(result["title"]);
     })
     .done(function() {
       document.getElementById("success").innerHTML = "Song added to queue";
