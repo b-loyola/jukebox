@@ -1,6 +1,6 @@
 <div class="container">
 <%= erb :navbar %>
-	<div align="center" class="embed-responsive embed-responsive-16by9">
+	<div align="center">
 	    <video id="video" autoplay loop class="embed-responsive-item">
 	        <source src="/media/342466858.mp4" type="video/mp4">
 	    </video>
@@ -17,12 +17,12 @@
 			<% end %>
 
 			<div class="form-group">
-				<input type="text" class="form-control" id="joinRoom" name="join_room_name" placeholder="Enter room name here...">
-				<button type="submit" class="btn btn-primary">Join Room</button>
+				<!-- <input type="text" class="form-control" id="joinRoom" name="join_room_name" placeholder="Enter room name here..."> -->
+				<button type="submit" class="btn-success">Join Room</button>
 			</div>
 			<div class ="join-group">
 				<input type="text" class="form-control" id="createRoom" name="room_name" placeholder="Enter room name here...">
-				<button type="submit" class="btn btn-primary">Create Room</button>
+				<button type="submit" class="btn btn-success">Create Room</button>
 			</div>
 		</form>
 	</div>
