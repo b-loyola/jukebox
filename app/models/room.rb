@@ -1,9 +1,9 @@
 class Room < ActiveRecord::Base
 	has_many :songs, dependent: :destroy
 
-	validates :name, presence: true, uniqueness: true
+	# validates :name, presence: true, uniqueness: true
 
-	def next_song_id
+	def next_song
 		current_song = songs[song_counter]
 		if current_song && (song_counter < songs.size)
 			self.song_counter += 1
@@ -11,7 +11,7 @@ class Room < ActiveRecord::Base
 		else
 			current_song = songs.sample
 		end
-		current_song.url
+		current_song
 	end
 
 end

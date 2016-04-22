@@ -70,6 +70,8 @@ GEM
       sinatra (>= 1.2.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    yt (0.25.34)
+      activesupport
 
 PLATFORMS
   ruby
@@ -85,3 +87,4 @@ DEPENDENCIES
   sinatra-contrib
   sqlite3
   tux
+  yt (~> 0.25.5)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160421210752) do
+ActiveRecord::Schema.define(version: 20160422000046) do
 
   create_table "rooms", force: :cascade do |t|
     t.string   "name"
@@ -23,8 +23,9 @@ ActiveRecord::Schema.define(version: 20160421210752) do
   create_table "songs", force: :cascade do |t|
     t.integer  "room_id"
     t.string   "url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.string   "title",      default: "Title Unavailable"
   end
 
 end

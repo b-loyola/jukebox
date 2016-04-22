@@ -21,18 +21,7 @@ function onPlayerReady(event) {
   event.target.playVideo();
 }
 
-// initialize song counter
-// var songCounter = 1;
 
-// when video ends
-// function onPlayerStateChange(event) {
-//   if(event.data === 0) {
-  
-//    player.loadVideoById(getNextVideoID() );
-
-//   }
-// }
-// --------------------------
 function onPlayerStateChange(event) {
   if(event.data === 0) {
     playNextVideo();
@@ -46,19 +35,14 @@ function playNextVideo() {
     dataType: 'json',
     success: function(response) {
       // executed when AJAX call returns successfully
+
+      // TODO: Here you should use the song title and display it response["title"]
+      $("#song_name").text(response["title"]);
       player.loadVideoById(response['video_id'] );
     }
   });
 }
-// ----------------------------
-// function getNextVideoID() {
-//  if(songCounter > playlist.length -1) {
-//    songCounter = 0;
-//  };
-//  var nextSong = playlist[songCounter];
-//  songCounter++;
-//  return nextSong;
-// };
+
 
 $(document).ready(function() {
 
@@ -69,7 +53,7 @@ $(document).ready(function() {
     $.post(window.location.pathname, { link: songUrl },
       // success result comes here
       // update library list with result
-      function(result) { console.log(result);
+      function(result) { console.log(result["title"]);
     })
     .done(function() {
       document.getElementById("success").innerHTML = "Song added to queue";

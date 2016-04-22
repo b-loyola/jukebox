@@ -7,23 +7,23 @@
 	</div>
 
 	<div class="jumbotron">
-		<form class="form-inline" method="post" action="/rooms">
-			<% if @room.errors.any? %>
-				<ul>
-					<% @room.errors.full_messages do |message| %>
-						<li><%= message %></li>
-					<% end %>
-				</ul>
-			<% end %>
+		
+		<% if @room.errors.any? %>
+			<div>Room not found</div>
+		<% end %>
 
-			<div class="form-group">
-				<!-- <input type="text" class="form-control" id="joinRoom" name="join_room_name" placeholder="Enter room name here..."> -->
-				<button type="submit" class="btn-success">Join Room</button>
-			</div>
+		<form class="form-inline" method="post" action="/rooms">
 			<div class ="join-group">
-				<input type="text" class="form-control" id="createRoom" name="room_name" placeholder="Enter room name here...">
-				<button type="submit" class="btn btn-success">Create Room</button>
+				<button type="submit" class="btn btn-success btn-lg">Create Room</button>
 			</div>
 		</form>
+
+		<form method="get" action="/rooms/join">
+			<div class="form-group">
+				<input type="text" class="form-control" id="joinRoom" name="room_number" placeholder="Enter room number here...">
+				<button type="submit" class="btn btn-success btn-lg">Join Room</button>
+			</div>
+		</form>
+		
 	</div>
 </div>

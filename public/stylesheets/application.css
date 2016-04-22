@@ -1,4 +1,3 @@
-
 body {
   padding-top: 60px;
   background-color: black;
@@ -44,6 +43,7 @@ body {
   transition: 1s;
   width: 172px;
   margin: 5px;
+  filter: 
 }
 
 .btn-success:hover {
@@ -52,7 +52,3 @@ body {
   background-color: #267326;
   border-color: #267326;
 }
-
-
-
-
