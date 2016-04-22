@@ -1,0 +1,13 @@
+<%= erb :navbar %>
+
+<form class="form-inline" method="post" action="/rooms/<%= @room.id %>/songs">
+	<div class="form-group">
+		<input type="text" class="form-control" id="addSong" name="song_url" placeholder="Enter Youtube url here...">
+		<button type="submit" class="btn btn-primary add-song">Add Song</button>
+		<% if @song.errors.any? %>
+			<div>Failed to add song, please try a different url</div>
+		<% else %>
+			<div>Song submitted!</div>
+		<% end %>
+	</div>
+</form> 
