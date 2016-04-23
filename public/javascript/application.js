@@ -2,7 +2,8 @@
 var player;
 
 // create playlist
-var playlist = [];
+window.playlist = [];
+window.currentSongIndex = 0;
 
 // function onYouTubePlayerAPIReady() {
 // }
@@ -28,16 +29,18 @@ function onPlayerReady(event) {
 function onPlayerStateChange(event) {
   if(event.data === 0) {
     console.log("inside onPlayerStateChange");
-    playNextVideo();
+    changeSong(currentSongIndex + 1);
   }
 }
 
-function playNextVideo() {
+function changeSong(index) {
   $.ajax({
     method: 'get',
-    url: window.location.pathname + '/songs/next', // <-- get '/rooms/:room_id/next'
+    url: window.location.pathname + '/songs/change/' + index, // <-- get '/rooms/:room_id/next'
     dataType: 'json'
   }).then(function success(result) {
+    window.currentSongIndex = index
+    window.currentSong = result.song
     player.loadVideoById(result.song.url);
     $("#song_name").text(result.song.title);
   }, function errorAdd(err){
@@ -81,6 +84,8 @@ $(document).ready(function() {
       url: window.location.pathname + '/songs/current', // <-- get '/rooms/:room_id/current'
       dataType: 'json'
     }).then(function success(result) {
+      window.currentSongIndex = result.index;
+      window.currentSong = result.song;
       loadVideo(result.song.url);
       $("#song_name").text(result.song.title);
       getPlaylist();
@@ -108,7 +113,7 @@ $(document).ready(function() {
     }, function errorAdd(err){
       $('#success').text("Failed to add song, please try a different link").show().delay(2500).fadeOut(300);
     });
-    
+
   });
 
 });
