@@ -7,8 +7,13 @@ class Room < ActiveRecord::Base
 		songs[song_counter]
 	end
 
-	def next_song
-		songs[song_counter + 1]
+	def change_song(index)
+		if songs[index]
+			self.song_counter = index
+			songs[index]
+		else
+			songs.sample
+		end
 	end
 
 	def increment_counter
@@ -21,7 +26,7 @@ class Room < ActiveRecord::Base
 		@auth_token = ENV['TWILIO_TOKEN']
 		@recipient = "+1#{number}"
 		@link = "10.10.43.144:3000/rooms/#{self.id}"
-		
+
 		# set up a client
 		@client = Twilio::REST::Client.new(@account_sid, @auth_token)
 		@client.account.messages.create(
@@ -32,6 +37,3 @@ class Room < ActiveRecord::Base
 	end
 
 end
-
-
-

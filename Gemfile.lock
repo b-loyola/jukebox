@@ -15,6 +15,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     arel (6.0.3)
+    awesome_print (1.6.1)
     backports (3.6.7)
     bond (0.5.1)
     builder (3.2.2)
@@ -84,6 +85,7 @@ PLATFORMS
 
 DEPENDENCIES
   activesupport
+  awesome_print
   dotenv
   pry
   puma

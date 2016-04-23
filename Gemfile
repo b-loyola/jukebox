@@ -18,4 +18,5 @@ group :development, :test do
   gem 'shotgun'
   gem 'sqlite3'
   gem 'dotenv'
+  gem 'awesome_print'
 end

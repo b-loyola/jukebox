@@ -74,20 +74,17 @@ get '/rooms/:room_id/songs/current' do
 	room = Room.find(params[:room_id])
 	song = room.current_song
 	if song
-		{song: song}.to_json
+		{
+			index: room.song_counter,
+			song: song
+		}.to_json
 	end
 end
 
-get '/rooms/:room_id/songs/next' do
+get '/rooms/:room_id/songs/change/:index' do
 	content_type :json
 	room = Room.find(params[:room_id])
-	song = nil
-	if room.next_song
-		song = room.next_song
-		room.increment_counter
-	else
-		song = room.songs.sample
-	end
+	song = room.change_song(params[:index].to_i)
 	{song: song}.to_json
 end
 
@@ -97,10 +94,3 @@ get '/rooms/:room_id/songs/all' do
 	playlist = room.songs.order(created_at: :desc)
 	{playlist: playlist}.to_json
 end
-
-
-
-
-
-
-
