@@ -53,14 +53,23 @@ function getPlaylist() {
     dataType: 'json',
     success: function(response) {
       playlist = response.playlist;
+      console.log(playlist);
+      $.each(playlist, function(i,song) {
+        $("#playlist").html("<li>" + song.title + "</li>");
+        return i < 4;
+      });
+
     }
   });
 }
 
 
-
-
 $(document).ready(function() {
+
+  // checks for playlist
+  setInterval(function() {
+    getPlaylist();
+   }, 10000 );
 
   // starts player
   $("#start-play").on("click", function() {
