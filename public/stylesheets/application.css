@@ -13,7 +13,23 @@ body {
   bottom:0%;
   margin-bottom: 0%;
   border-radius: 0rem;
-  background-color: rgba(51, 51, 51,0.5);
+  background-color: rgba(255, 255, 255,0.4);
+}
+
+.navid {
+  max-width: 67%;
+}
+
+#slogan {
+  position:absolute;
+  top: 35%;
+  text-align: center;
+  color: rgba(255, 255, 255,0.4);
+}
+
+.navbar-brand {
+  font-family: 'Lobster', cursive;
+  font-size: 3rem;
 }
 
 .alert {
