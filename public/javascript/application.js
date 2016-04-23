@@ -1,6 +1,8 @@
 // create youtube player
 var player;
 
+// create playlist
+var playlist = [];
 
 // function onYouTubePlayerAPIReady() {
 // }
@@ -31,18 +33,27 @@ function onPlayerStateChange(event) {
 }
 
 function playNextVideo() {
-  console.log("inside playNextVideo");
   $.ajax({
     method: 'get',
     url: window.location.pathname + '/songs/next', // <-- get '/rooms/:room_id/next'
-    dataType: 'json',
+    dataType: 'json'
   }).then(function success(result) {
-    console.log("inside ajax playNextVideo success");
-    console.log(result);
     player.loadVideoById(result.song.url);
     $("#song_name").text(result.song.title);
   }, function errorAdd(err){
-    console.log("inside ajax playNextVideo error");
+    $('#success').text("Could not load video, please try again.").show().delay(2500).fadeOut(300);
+  });
+}
+
+function getPlaylist() {
+
+  $.ajax({
+    method: 'get',
+    url: window.location.pathname + '/songs/all', // <-- get '/rooms/:room_id/songs/all'
+    dataType: 'json',
+    success: function(response) {
+      playlist = response.playlist;
+    }
   });
 }
 
@@ -51,11 +62,27 @@ function playNextVideo() {
 
 $(document).ready(function() {
 
-  var firstSong = true;
+  // starts player
+  $("#start-play").on("click", function() {
+    $.ajax({
+      method: 'get',
+      url: window.location.pathname + '/songs/current', // <-- get '/rooms/:room_id/current'
+      dataType: 'json'
+    }).then(function success(result) {
+      loadVideo(result.song.url);
+      $("#song_name").text(result.song.title);
+      getPlaylist();
+      $("#start-play").hide();
+    }, function errorPlay(err){
+      $('#success').text("Failed to start playlist, please make sure you have added songs.").show().delay(3200).fadeOut(300);
+    });
+  });
 
+  //adds songs to queue
   $("#add-song").on("click", function() {
 
     var songUrl = $("#addSong").val();
+    $('#success').text("Please wait, adding song to queue").show();
 
     $.ajax({
       url: window.location.pathname,
@@ -63,17 +90,11 @@ $(document).ready(function() {
       data: {link: songUrl}
     }).then(function successAdd(result){
 
-      $('#success').text("Song added to queue");
-      var songId = result.song.url;
-
-      if(firstSong){
-        loadVideo(songId);
-        $("#song_name").text(result.song.title);
-        firstSong = false;
-      }
+      $('#success').text("Song added to queue").show().delay(2500).fadeOut(300);
+      $("#addSong").val('');
 
     }, function errorAdd(err){
-      $('#success').text("Failed to add song, please try a different link");
+      $('#success').text("Failed to add song, please try a different link").show().delay(2500).fadeOut(300);
     });
     
   });
