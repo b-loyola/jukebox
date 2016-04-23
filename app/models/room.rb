@@ -9,13 +9,6 @@ class Room < ActiveRecord::Base
 
 	def next_song
 		songs[song_counter + 1]
-		# current_song = songs[song_counter]
-		# if current_song && (song_counter < songs.size)
-		# 	increment_counter
-		# else
-		# 	current_song = songs.sample
-		# end
-		# current_song
 	end
 
 	def increment_counter
