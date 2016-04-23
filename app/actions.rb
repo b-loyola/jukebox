@@ -94,7 +94,7 @@ end
 get '/rooms/:room_id/songs/all' do
 	content_type :json
 	room = Room.find(params[:room_id])
-	playlist = room.songs.order(created_at: :desc).limit(5)
+	playlist = room.songs.order(created_at: :desc)
 	{playlist: playlist}.to_json
 end
 

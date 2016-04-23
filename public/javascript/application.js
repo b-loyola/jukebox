@@ -43,6 +43,7 @@ function playNextVideo() {
   }, function errorAdd(err){
     $('#success').text("Could not load video, please try again.").show().delay(2500).fadeOut(300);
   });
+  // player.loadVideoById(playlist);
 }
 
 function getPlaylist() {
@@ -54,10 +55,11 @@ function getPlaylist() {
     success: function(response) {
       playlist = response.playlist;
       console.log(playlist);
+      var newPlaylist = "";
       $.each(playlist, function(i,song) {
-        $("#playlist").html("<li>" + song.title + "</li>");
-        return i < 4;
+        newPlaylist += "<li>" + song.title + "</li>";
       });
+      $("#playlist").html(newPlaylist);
 
     }
   });
@@ -67,6 +69,7 @@ function getPlaylist() {
 $(document).ready(function() {
 
   // checks for playlist
+  getPlaylist();
   setInterval(function() {
     getPlaylist();
    }, 10000 );
