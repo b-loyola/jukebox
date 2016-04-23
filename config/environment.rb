@@ -1,3 +1,6 @@
+require 'dotenv'
+Dotenv.load
+
 require 'rubygems'
 require 'bundler/setup'
 
@@ -10,6 +13,8 @@ require 'sinatra/contrib/all' # Requires cookies, among other things
 
 require 'pry'
 require 'yt'
+require 'twilio-ruby'
+
 
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
 APP_NAME = APP_ROOT.basename.to_s
@@ -24,8 +29,13 @@ configure do
 
   set :views, File.join(Sinatra::Application.root, "app", "views")
 
+# Twilio SID and Token
+  account_sid = ENV['TWILIO_SID']
+  auth_token = ENV['TWILIO_TOKEN']
+
+#YouTube API Key
   Yt.configure do |config|
-    config.api_key = 'AIzaSyBkfUsw0XxnLWdaAnmIpTadS09QPfdIeXo'
+    config.api_key = ENV['YOUTUBE_KEY']
   end
 end
 
