@@ -100,7 +100,11 @@ get '/rooms/:room_id/songs/all' do
 	{playlist: playlist}.to_json
 end
 
-
+post '/rooms/:room_id/text' do
+  room = Room.find(params[:room_id])  
+  phone_number = params[:phone_number]
+  room.send_text(phone_number) if phone_number
+end
 
 
 
