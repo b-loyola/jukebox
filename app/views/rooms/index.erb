@@ -1,14 +1,22 @@
 <% if session[:host] == @room.id %>
 
 	<%= erb :'rooms/player' %>
+
   <div id="sidebar" class="container">
     <div class="col-lg-4 col-lg-offset-8 col-md-4 col-md-offset-8 col-sm-4 col-sm-offset-8 col-xs-4 col-xs-offset-8">
       <%= erb :'rooms/_song_submit' %>
     </div> 
   </div>
   <h3 id="song_name"> Song Title Unavailable</h3>
+
 <% else %>
-	<%= erb :'rooms/_song_submit' %>
+
+  <div id="guest-wrapper" class="container">
+    <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 ">
+    	<%= erb :'rooms/_song_submit' %>
+    </div>
+  </div>
+
 <% end %>
 
 
