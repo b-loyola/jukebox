@@ -61,9 +61,15 @@ body {
   transition: 0.5s;
 }
 
-/*.btn-success {
+.navbar-inverse .navbar-nav li a.navbar-info {
+  cursor: default;
+  padding-right: 60px;
+  color: whitesmoke;
+}
+
+.btn-success {
   min-width: 100px;
-}*/
+}
 
 #player-controls {
   min-width: inherit;
@@ -94,12 +100,6 @@ body {
 
 .jumbotron{
   vertical-align: bottom;
-/*  width: 100%;
-  position:fixed;
-  bottom:0%;
-  margin: 0%;
-  border-radius: 0rem;
-  background-color: rgba(255, 255, 255,0.4);*/
 }
 
 .player-container {
@@ -107,69 +107,21 @@ body {
   background-image: url("/media/loading.gif");
   background-position: center;
   text-align: center;
-  /*display: flex;
-  align-items: center;*/
 }
 
 #sidebar {
   padding: 35px;
 }
-/*
-#track-change {
-  position:absolute;
-  top: 13%;
-  margin: 5px;
+
+#success {
+  min-height: 35px;
+  color: whitesmoke;
 }
 
-#guest-wrapper {
-  position:fixed;
-  top: 45%;
-}
-*/
 .navbar-brand {
   font-family: 'Lobster', cursive;
   font-size: 3rem;
 }
-/*
-.alert {
-  margin-bottom: 0px;
-}
-
-.btn-group-md {
-  padding: .75rem 1.25rem;
-  font-size: 1.25rem;
-  line-height: 1.333333;
-  border-radius: .3rem;
-  width: 100%;
-  margin-bottom: 5px;
-  left: 28px;
-}
-
-.btn-success {
-  opacity: 1;
-  transition: 1s;
-  width: 100%;
-  margin-bottom: 5px;
-  margin-top: 5px;
-  width: 150px;
-}*/
-
-/*.btn-default {
-  color: #fff;
-  opacity: 1;
-  transition: 1s;
-  background-color: #5cb85c;
-  border-color: #5cb85c;
-  width: 150px;
-}*/
-
-/*.btn-default:hover {
-  opacity: 1.0;
-  transition: 1s;
-  color: #fff;
-  background-color: #267326;
-  border-color: #267326;
-}*/
 
 .btn-success:hover {
   opacity: 1.0;
@@ -182,18 +134,6 @@ body {
   color: #bfbfbf;
   padding: 35px;
 }
-/*
-#success {
-  color: #bfbfbf;
-  position: fixed;
-  left: 22%;
-  top:90%;
-}
-
-#music-queue {
-  color: #bfbfbf;
-  cursor: pointer;
-}*/
 
 .btn-circle.btn-xl {
   width: 70px;

@@ -5,11 +5,11 @@
 	<% if @room && @room.id %>
 	<div class="navbar-collapse collapse">
 		<ul class="nav navbar-nav navbar-right">
-			<li class="nav-item">
-				Room # <%= @room.id %>
+			<li class="nav-item disabled">
+				<a href="#" class="navbar-info">Room # <%= @room.id %></a>
 			</li>
-			<li class="nav-item">
-				Join this room at JukeTube.com
+			<li class="nav-item disabled">
+				<a href="#" class="navbar-info">Join this room at JukeTube.com</a>
 			</li>
 		</ul>
 	</div>
