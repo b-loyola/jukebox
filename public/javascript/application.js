@@ -157,4 +157,25 @@ $(document).ready(function() {
       $('#success').text("Failed to add song, please try a different link").show().delay(2500).fadeOut(300);
     });
   });
+
+  $('#text-friend').on("click", function() {
+
+    var phoneNumber = $("#addPhone").val();
+    $('#success').text("Please wait, texting your friend an invite").show();
+
+    $.ajax({
+      url: window.location.pathname + '/text', // <-- get '/rooms/:room_id/text'
+      method: 'post',
+      data: {phone_number: phoneNumber}
+    }).then(function successPhone(result){
+
+      $('#success').text("Invite sent to friend!").show().delay(2500).fadeOut(300);
+      $("#addSong").val('');
+
+    }, function errorAdd(err){
+      $('#success').text("Failed to send text, please provide a different number").show().delay(2500).fadeOut(300);
+    });
+
+  });
+
 });
