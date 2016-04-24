@@ -4,16 +4,22 @@ class Room < ActiveRecord::Base
 	# validates :name, presence: true, uniqueness: true
 
 	def current_song
-		songs[song_counter]
+		songs[self.song_counter]
 	end
 
-	def next_song
-		songs[song_counter + 1]
+	def play_song(id)
+		song = self.songs.find(id)
+		self.song_counter = self.songs.find_index(song)
+		song
 	end
 
-	def increment_counter
-		self.song_counter += 1
-		self.save
+	def change_song(index)
+		if songs[index]
+			self.update_attributes(song_counter: index)
+			songs[index]
+		else
+			songs.sample
+		end
 	end
 
 	def send_text(number)
@@ -21,7 +27,7 @@ class Room < ActiveRecord::Base
 		@auth_token = ENV['TWILIO_TOKEN']
 		@recipient = "+1#{number}"
 		@link = "10.10.43.144:3000/rooms/#{self.id}"
-		
+
 		# set up a client
 		@client = Twilio::REST::Client.new(@account_sid, @auth_token)
 		@client.account.messages.create(
@@ -32,6 +38,3 @@ class Room < ActiveRecord::Base
 	end
 
 end
-
-
-
