@@ -29,6 +29,12 @@ function playVideo(videoCode) {
   }
 }
 
+function pauseVideo() {
+  if (window.playerLoaded) {
+    window.player.pauseVideo();
+  }
+}
+
 // autoplay video
 function onPlayerReady(event) {
   event.target.playVideo();
@@ -40,21 +46,9 @@ function onPlayerStateChange(event) {
   }
 }
 
-// Search youtube for a specified string.
-// function search() {
-//   var q = $('#addSong').val();
-//   var request = gapi.client.youtube.search.list({
-//     q: q,
-//     part: 'snippet'
-//   });
-
-//   request.execute(function(response) {
-//     var str = JSON.stringify(response.result);
-//     $('#search-container').html('<pre>' + str + '</pre>');
-//   });
-// }
-
 function changeSong(index) {
+  player.pauseVideo();
+  $('#success').text("Please wait, loading song...");
   $.ajax({
     method: 'get',
     url: window.location.pathname + '/songs/change/' + index, // <-- get '/rooms/:room_id/next'
@@ -62,10 +56,11 @@ function changeSong(index) {
   }).then(function success(result) {
     window.currentSongIndex = index;
     window.currentSong = result.song;
+    $('#success').text("");
     playVideo(result.song.url);
     $("#song_name").text(result.song.title);
   }, function errorAdd(err){
-    $('#success').text("Could not load video, please try again.").show().delay(2500).fadeOut(300);
+    $('#success').text("Could not load video, please try again.");
   });
 }
 
@@ -81,7 +76,7 @@ function getPlaylist() {
       $.each(playlist, function(i,song) {
         $newPlaylist.append(
           $("<li />").append(
-            $("<a />").addClass("song").attr("data-song-id", song.id).text(song.title)
+            $("<a />").addClass("song list-group-item").attr("data-song-id", song.id).text(song.title)
           )
         );
       });
@@ -113,15 +108,17 @@ $(document).ready(function() {
       getPlaylist();
       $("#start-play").hide();
     }, function errorPlay(err){
-      $('#success').text("Failed to start playlist, please make sure you have added songs.").show().delay(3200).fadeOut(300);
+      $('#success').text("Failed to start playlist, please make sure you have added songs.");
     });
   });
 
   $("#next-song, #previous-song").on("click", function() {
-    changeSong(window.currentSongIndex + ($(this).id == "next-song" ? 1 : -1));
+    changeSong(window.currentSongIndex + ($(this).attr('id') == "next-song" ? 1 : -1));
   });
 
   $("#playlist").on("click", ".song", function() {
+    pauseVideo();
+    $('#success').text("Please wait, loading song...");
     id = $(this).data("song-id");
     $.ajax({
       method: 'get',
@@ -131,10 +128,11 @@ $(document).ready(function() {
       window.currentSongIndex = result.index;
       window.currentSong = result.song;
       playVideo(result.song.url);
+      $('#success').text("");
       $("#song_name").text(result.song.title);
       $("#start-play").hide();
     }, function errorPlay(err){
-      $('#success').text("Failed to play song.").show().delay(3200).fadeOut(300);
+      $('#success').text("Failed to play song.");
     });
   });
 
@@ -142,7 +140,7 @@ $(document).ready(function() {
   $("#add-song").on("click", function() {
 
     var songUrl = $("#addSong").val();
-    $('#success').text("Please wait, adding song to queue").show();
+    $('#success').text("Please wait, adding song to queue");
 
     $.ajax({
       url: window.location.pathname,
@@ -150,18 +148,18 @@ $(document).ready(function() {
       data: {link: songUrl}
     }).then(function successAdd(result){
 
-      $('#success').text("Song added to queue").show().delay(2500).fadeOut(300);
+      $('#success').text("Song added to queue");
       $("#addSong").val('');
 
     }, function errorAdd(err){
-      $('#success').text("Failed to add song, please try a different link").show().delay(2500).fadeOut(300);
+      $('#success').text("Failed to add song, please try a different link");
     });
   });
 
   $('#text-friend').on("click", function() {
 
     var phoneNumber = $("#addPhone").val();
-    $('#success').text("Please wait, texting your friend an invite").show();
+    $('#success').text("Please wait, texting your friend an invite");
 
     $.ajax({
       url: window.location.pathname + '/text', // <-- get '/rooms/:room_id/text'
@@ -169,11 +167,11 @@ $(document).ready(function() {
       data: {phone_number: phoneNumber}
     }).then(function successPhone(result){
 
-      $('#success').text("Invite sent to friend!").show().delay(2500).fadeOut(300);
+      $('#success').text("Invite sent to friend!").delay(2500);
       $("#addSong").val('');
 
     }, function errorAdd(err){
-      $('#success').text("Failed to send text, please provide a different number").show().delay(2500).fadeOut(300);
+      $('#success').text("Failed to send text, please provide a different number");
     });
 
   });

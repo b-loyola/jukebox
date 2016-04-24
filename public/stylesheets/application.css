@@ -1,62 +1,121 @@
 body {
   padding-top: 60px;
   background-color: #181a1b;
+  font-family: 'Open Sans'
 }
 
-#start-play {
-  position: relative;
-  left: 45.9%;
-  color: white;
+.video-background {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    background: url(polina.jpg) no-repeat;
+    background-size: cover;
 }
 
-.fa{
-  margin-top: 24.3%;
+.spacer {
+  margin-bottom: 30px;
 }
 
-.jumbotron{
-  width: 100%;
-  position:fixed;
-  bottom:0%;
-  margin: 0%;
-  border-radius: 0rem;
-  background-color: rgba(255, 255, 255,0.4);
-}
-
-.player-container {
-  width: 66%;
-  background-image: url("http://0.media.collegehumor.cvcdn.com/27/71/05fc6c034ee9c6c942a9b9fe8d1149b2.gif");
-  background-position: center;
-}
-
-#sidebar {
-  position:absolute;
-  top: 22%;
-  margin: 5px;
-}
-
-#track-change {
-  position:absolute;
-  top: 13%;
-  margin: 5px;
-}
-
-#start-play {
-  position:absolute;
-  top: 38%;
-  margin: 5px;
-}
-
-#guest-wrapper {
-  position:fixed;
-  top: 45%;
+.alert {
+  margin-top: 30px;
 }
 
 #slogan {
-  position:absolute;
-  top: 35%;
-  text-align: center;
-  color: rgba(255, 255, 255,0.4);
+  position: fixed;
+  top: 50%;
+  width: 100%;
+  margin-top: -85px; /* -61px for top nav; -20px for half of height; */
   font-family: 'Lobster', cursive;
+}
+
+#slogan h1 {
+  color: white;
+}
+
+.welcome-form {
+  position: fixed;
+  bottom: 100px;
+}
+
+#playlist {
+  list-style-type: none;
+}
+
+#playlist .list-group-item {
+  background-color: #2a2826;
+  color: white;
+  border-radius: 0px;
+  cursor: pointer;
+}
+
+#playlist .list-group-item:hover {
+  background-color: whitesmoke;
+  color: black;
+  transition: 0.5s;
+}
+
+.navbar-inverse .navbar-nav li a.navbar-info {
+  cursor: default;
+  padding-right: 60px;
+  color: whitesmoke;
+}
+
+.btn-success {
+  min-width: 100px;
+}
+
+#player-controls {
+  min-width: inherit;
+}
+
+.control-wrapper {
+  width: 100%;
+}
+
+#previous-song {
+  width: 50%;
+}
+
+#next-song {
+  width: 50%;
+}
+
+#start-play {
+  position: absolute;
+  color: #2a2826;
+  z-index: 2;
+  left: 50%;
+  top: 50%;
+  margin-left: -35px;
+  margin-top: -35px;
+}
+
+
+.jumbotron{
+  vertical-align: bottom;
+}
+
+.player-container {
+  position: relative;
+  background-image: url("/media/loading.gif");
+  background-position: center;
+  text-align: center;
+}
+
+#sidebar {
+  padding: 35px;
+}
+
+#success {
+  min-height: 35px;
+  color: whitesmoke;
 }
 
 .navbar-brand {
@@ -64,67 +123,23 @@ body {
   font-size: 3rem;
 }
 
-.alert {
-  margin-bottom: 0px;
-}
-
-.btn-group-md {
-  padding: .75rem 1.25rem;
-  font-size: 1.25rem;
-  line-height: 1.333333;
-  border-radius: .3rem;
-  width: 100%;
-  margin-bottom: 5px;
-  left: 28px;
-}
-
-.btn-success {
-  opacity: 1;
-  transition: 1s;
-  width: 100%;
-  margin-bottom: 5px;
-  margin-top: 5px;
-}
-
-.btn-default {
-  color: #fff;
-  opacity: 1;
-  transition: 1s;
-  background-color: #5cb85c;
-  border-color: #5cb85c;
-  width: 150px;
-}
-
-.btn-default:hover {
-  opacity: 1.0;
-  transition: 1s;
-  color: #fff;
-  background-color: #267326;
-  border-color: #267326;
-}
-
 .btn-success:hover {
   opacity: 1.0;
-  transition: 1s;
+  transition: 0.5s;
   background-color: #267326;
   border-color: #267326;
 }
 
 .song-name {
   color: #bfbfbf;
-  position: fixed;
-  left: 10%;
-  top:91.5%;
+  padding: 35px;
 }
 
-#success {
-  color: #bfbfbf;
-  position: fixed;
-  left: 22%;
-  top:90%;
-}
-
-#music-queue {
-  color: #bfbfbf;
-  cursor: pointer;
+.btn-circle.btn-xl {
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  font-size: 24px;
+  line-height: 1.33;
+  border-radius: 35px;
 }
