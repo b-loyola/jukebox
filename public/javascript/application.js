@@ -29,6 +29,12 @@ function playVideo(videoCode) {
   }
 }
 
+function pauseVideo() {
+  if (window.playerLoaded) {
+    window.player.pauseVideo();
+  }
+}
+
 // autoplay video
 function onPlayerReady(event) {
   event.target.playVideo();
@@ -111,7 +117,7 @@ $(document).ready(function() {
   });
 
   $("#playlist").on("click", ".song", function() {
-    player.pauseVideo();
+    pauseVideo();
     $('#success').text("Please wait, loading song...").show();
     id = $(this).data("song-id");
     $.ajax({

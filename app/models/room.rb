@@ -14,6 +14,7 @@ class Room < ActiveRecord::Base
 	end
 
 	def change_song(index)
+		index = 0 if index < 0
 		if songs[index]
 			self.update_attributes(song_counter: index)
 			songs[index]
