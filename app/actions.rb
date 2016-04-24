@@ -61,12 +61,14 @@ post '/rooms/:id/?' do
 	end
 end
 
-get '/rooms/:id/song/?' do
+get '/rooms/:room_id/song/:id' do
 	content_type :json
-	room = Room.find(params[:id])
-	song = room.songs[0]
-	room.increment_counter
-	{song: song}.to_json
+	room = Room.find(params[:room_id])
+	song = room.play_song(params[:id])
+	{
+		index: room.song_counter,
+		song: song
+	}.to_json
 end
 
 get '/rooms/:room_id/songs/current' do
@@ -91,6 +93,6 @@ end
 get '/rooms/:room_id/songs/all' do
 	content_type :json
 	room = Room.find(params[:room_id])
-	playlist = room.songs.order(created_at: :desc)
+	playlist = room.songs
 	{playlist: playlist}.to_json
 end

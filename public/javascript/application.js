@@ -1,16 +1,15 @@
 // create youtube player
-var player;
+window.player = null;
 
 // create playlist
 window.playlist = [];
 window.currentSongIndex = 0;
-
-// function onYouTubePlayerAPIReady() {
-// }
+window.currentSong = null;
+window.playerLoaded = false;
 
 // starts player and loads video
-function loadVideo(videoCode) {
-  player = new YT.Player('player', {
+function loadVideoAndPlayer(videoCode) {
+  window.player = new YT.Player('player', {
     height: '390',
     width: '640',
     videoId: videoCode,
@@ -19,6 +18,15 @@ function loadVideo(videoCode) {
       'onStateChange': onPlayerStateChange
     }
   });
+  window.playerLoaded = true;
+}
+
+function playVideo(videoCode) {
+  if (window.playerLoaded) {
+    window.player.loadVideoById(videoCode);
+  } else {
+    loadVideoAndPlayer(videoCode);
+  }
 }
 
 // autoplay video
@@ -28,10 +36,23 @@ function onPlayerReady(event) {
 
 function onPlayerStateChange(event) {
   if(event.data === 0) {
-    console.log("inside onPlayerStateChange");
     changeSong(currentSongIndex + 1);
   }
 }
+
+// Search youtube for a specified string.
+// function search() {
+//   var q = $('#addSong').val();
+//   var request = gapi.client.youtube.search.list({
+//     q: q,
+//     part: 'snippet'
+//   });
+
+//   request.execute(function(response) {
+//     var str = JSON.stringify(response.result);
+//     $('#search-container').html('<pre>' + str + '</pre>');
+//   });
+// }
 
 function changeSong(index) {
   $.ajax({
@@ -39,14 +60,13 @@ function changeSong(index) {
     url: window.location.pathname + '/songs/change/' + index, // <-- get '/rooms/:room_id/next'
     dataType: 'json'
   }).then(function success(result) {
-    window.currentSongIndex = index
-    window.currentSong = result.song
-    player.loadVideoById(result.song.url);
+    window.currentSongIndex = index;
+    window.currentSong = result.song;
+    playVideo(result.song.url);
     $("#song_name").text(result.song.title);
   }, function errorAdd(err){
     $('#success').text("Could not load video, please try again.").show().delay(2500).fadeOut(300);
   });
-  // player.loadVideoById(playlist);
 }
 
 function getPlaylist() {
@@ -56,14 +76,16 @@ function getPlaylist() {
     url: window.location.pathname + '/songs/all', // <-- get '/rooms/:room_id/songs/all'
     dataType: 'json',
     success: function(response) {
-      playlist = response.playlist;
-      console.log(playlist);
-      var newPlaylist = "";
+      window.playlist = response.playlist;
+      $newPlaylist = $("<ul />");
       $.each(playlist, function(i,song) {
-        newPlaylist += "<li>" + song.title + "</li>";
+        $newPlaylist.append(
+          $("<li />").append(
+            $("<a />").addClass("song").attr("data-song-id", song.id).text(song.title)
+          )
+        );
       });
-      $("#playlist").html(newPlaylist);
-
+      $("#playlist").html($newPlaylist.html());
     }
   });
 }
@@ -86,12 +108,33 @@ $(document).ready(function() {
     }).then(function success(result) {
       window.currentSongIndex = result.index;
       window.currentSong = result.song;
-      loadVideo(result.song.url);
+      playVideo(result.song.url);
       $("#song_name").text(result.song.title);
       getPlaylist();
       $("#start-play").hide();
     }, function errorPlay(err){
       $('#success').text("Failed to start playlist, please make sure you have added songs.").show().delay(3200).fadeOut(300);
+    });
+  });
+
+  $("#next-song, #previous-song").on("click", function() {
+    changeSong(window.currentSongIndex + ($(this).id == "next-song" ? 1 : -1));
+  });
+
+  $("#playlist").on("click", ".song", function() {
+    id = $(this).data("song-id");
+    $.ajax({
+      method: 'get',
+      url: window.location.pathname + '/song/' + id,
+      dataType: 'json'
+    }).then(function success(result) {
+      window.currentSongIndex = result.index;
+      window.currentSong = result.song;
+      playVideo(result.song.url);
+      $("#song_name").text(result.song.title);
+      $("#start-play").hide();
+    }, function errorPlay(err){
+      $('#success').text("Failed to play song.").show().delay(3200).fadeOut(300);
     });
   });
 
@@ -113,7 +156,5 @@ $(document).ready(function() {
     }, function errorAdd(err){
       $('#success').text("Failed to add song, please try a different link").show().delay(2500).fadeOut(300);
     });
-
   });
-
 });

@@ -4,21 +4,22 @@ class Room < ActiveRecord::Base
 	# validates :name, presence: true, uniqueness: true
 
 	def current_song
-		songs[song_counter]
+		songs[self.song_counter]
+	end
+
+	def play_song(id)
+		song = self.songs.find(id)
+		self.song_counter = self.songs.find_index(song)
+		song
 	end
 
 	def change_song(index)
 		if songs[index]
-			self.song_counter = index
+			self.update_attributes(song_counter: index)
 			songs[index]
 		else
 			songs.sample
 		end
-	end
-
-	def increment_counter
-		self.song_counter += 1
-		self.save
 	end
 
 	def send_text(number)
