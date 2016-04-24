@@ -108,7 +108,7 @@ $(document).ready(function() {
       getPlaylist();
       $("#start-play").hide();
     }, function errorPlay(err){
-      $('#success').text("Failed to start playlist, please make sure you have added songs.");
+      $('#success').text("Please add songs.");
     });
   });
 
@@ -152,14 +152,14 @@ $(document).ready(function() {
       $("#addSong").val('');
 
     }, function errorAdd(err){
-      $('#success').text("Failed to add song, please try a different link");
+      $('#success').text("Failed to add song, try a different link.");
     });
   });
 
   $('#text-friend').on("click", function() {
 
     var phoneNumber = $("#addPhone").val();
-    $('#success').text("Please wait, texting your friend an invite");
+    $('#success').text("Please wait, texting your friend...");
 
     $.ajax({
       url: window.location.pathname + '/text', // <-- get '/rooms/:room_id/text'
@@ -171,7 +171,7 @@ $(document).ready(function() {
       $("#addSong").val('');
 
     }, function errorAdd(err){
-      $('#success').text("Failed to send text, please provide a different number");
+      $('#success').text("Failed to send text to this number.");
     });
 
   });
