@@ -15,6 +15,8 @@ require 'pry'
 require 'yt'
 require 'twilio-ruby'
 
+require 'awesome_print'
+
 
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
 APP_NAME = APP_ROOT.basename.to_s
@@ -36,6 +38,7 @@ configure do
 #YouTube API Key
   Yt.configure do |config|
     config.api_key = ENV['YOUTUBE_KEY']
+    config.log_level = :debug
   end
 end
 

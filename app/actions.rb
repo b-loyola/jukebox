@@ -61,42 +61,39 @@ post '/rooms/:id/?' do
 	end
 end
 
-get '/rooms/:id/song/?' do
+get '/rooms/:room_id/song/:id' do
 	content_type :json
-	room = Room.find(params[:id])
-	song = room.songs[0]
-	room.increment_counter
-	{song: song}.to_json
+	room = Room.find(params[:room_id])
+	song = room.play_song(params[:id])
+	{
+		index: room.song_counter,
+		song: song
+	}.to_json
 end
 
 get '/rooms/:room_id/songs/current' do
 	content_type :json
 	room = Room.find(params[:room_id])
 	song = room.current_song
-	# binding.pry
 	if song
-		{song: song}.to_json
+		{
+			index: room.song_counter,
+			song: song
+		}.to_json
 	end
 end
 
-get '/rooms/:room_id/songs/next' do
+get '/rooms/:room_id/songs/change/:index' do
 	content_type :json
 	room = Room.find(params[:room_id])
-	song = nil
-	# binding.pry
-	if room.next_song
-		song = room.next_song
-		room.increment_counter
-	else
-		song = room.songs.sample
-	end
+	song = room.change_song(params[:index].to_i)
 	{song: song}.to_json
 end
 
 get '/rooms/:room_id/songs/all' do
 	content_type :json
 	room = Room.find(params[:room_id])
-	playlist = room.songs.all
+	playlist = room.songs
 	{playlist: playlist}.to_json
 end
 
@@ -105,8 +102,3 @@ post '/rooms/:room_id/text' do
   phone_number = params[:phone_number]
   room.send_text(phone_number) if phone_number
 end
-
-
-
-
-
