@@ -26,7 +26,7 @@ class Room < ActiveRecord::Base
 		@account_sid = ENV['TWILIO_SID']
 		@auth_token = ENV['TWILIO_TOKEN']
 		@recipient = "+1#{number}"
-		@link = "10.10.44.67:3000/rooms/#{self.id}"
+		@link = "10.0.2.15:3000/rooms/#{self.id}"
 		# set up a client
 		@client = Twilio::REST::Client.new(@account_sid, @auth_token)
 		@client.account.messages.create(

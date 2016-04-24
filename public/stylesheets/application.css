@@ -125,4 +125,5 @@ body {
 
 #music-queue {
   color: #bfbfbf;
+  cursor: pointer;
 }
