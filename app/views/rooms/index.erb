@@ -1,40 +1,28 @@
 <% if session[:host] == @room.id %>
-  
-  <div class="row">
-  	<%= erb :'rooms/player' %>
-  </div>
 
-  <div class="row">
+  <div id="player-index" class="row">
+  	<%= erb :'rooms/player' %>
     <div id="sidebar" class="container">
-      <div class="col-lg-4 col-lg-offset-8 col-md-4 col-md-offset-8 col-sm-4 col-sm-offset-8 col-xs-4 col-xs-offset-8">
-        
-    <!--     <div class="form-inline">
-          <div class="form-group">
+      <div class="col-lg-4 col-lg-offset-9 col-md-4 col-md-offset-9 col-sm-4 col-sm-offset-9 col-xs-4 col-xs-offset-9">
+
+        <div class="form-group">
           <div class="input-group">
             <input type="text" class="form-control" id="addPhone" name="phone_number" placeholder="Enter 10 digit number...">
-             <button id="text-friend" class="btn btn-primary">Text Friend</button>
-            </div>
-          <div id="success"></div>
-        </div> -->     <!-- Old style -->
-
-          <div class="form-group">  <!-- New style -->
-            <div class="input-group">
-              <input type="text" class="form-control" id="addPhone" name="phone_number" placeholder="Enter 10 digit number...">
-              <span id="text-friend" class="input-group-btn"><button type="submit" class="btn btn-default">Text Friend</button></span>
-            </div>
+            <span id="text-friend" class="input-group-btn"><button type="submit" class="btn btn-default">Text Friend</button></span>
           </div>
+        </div>
 
         <%= erb :'rooms/_song_submit' %>
-        <h3 id="song_name"> Song Title Unavailable</h3>
         <div id="success"></div>
         
+
       </div> 
     </div> 
   </div>
 
-
-  <h3>Now Playing: <span id="song_name">-</span></h3>
-
+  <div class="song-name">
+    <h3>Now Playing: <span id="song_name"></span></h3>
+  </div>
 
 <% else %>
 
