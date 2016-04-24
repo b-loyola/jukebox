@@ -3,33 +3,41 @@ body {
   background-color: #181a1b;
 }
 
-.container { 
-  width: 100%;
-  padding: 0;
+#start-play {
+  position: relative;
+  left: 45.9%;
+  color: white;
+}
+
+.fa{
+  margin-top: 24.3%;
 }
 
 .jumbotron{
+  width: 100%;
   position:fixed;
   bottom:0%;
-  margin-bottom: 0%;
+  margin: 0%;
   border-radius: 0rem;
   background-color: rgba(255, 255, 255,0.4);
 }
 
 .player-container {
-  width: 67%;
+  width: 66%;
   background-image: url("http://0.media.collegehumor.cvcdn.com/27/71/05fc6c034ee9c6c942a9b9fe8d1149b2.gif");
   background-position: center;
 }
 
 #sidebar {
-  position:fixed;
-  top: 10%;
+  /*position:fixed;*/
+  /*top: 10%;*/
+  margin: 5px;
 }
 
 #start-play {
-  position:fixed;
-  top: 25%;
+  /*position:fixed;*/
+  /*top: 25%;*/
+  margin: 5px;
 }
 
 #guest-wrapper {
@@ -67,6 +75,7 @@ body {
   transition: 1s;
   background-color: #5cb85c;
   border-color: #5cb85c;
+  width: 150px;
 }
 
 .btn-default:hover {
@@ -82,4 +91,8 @@ body {
   transition: 1s;
   background-color: #267326;
   border-color: #267326;
+}
+
+#success {
+  color: #bfbfbf;
 }
