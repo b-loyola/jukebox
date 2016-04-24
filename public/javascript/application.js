@@ -70,7 +70,7 @@ function getPlaylist() {
       $.each(playlist, function(i,song) {
         $newPlaylist.append(
           $("<li />").append(
-            $("<a />").addClass("song").attr("data-song-id", song.id).text(song.title)
+            $("<a />").addClass("song list-group-item").attr("data-song-id", song.id).text(song.title)
           )
         );
       });

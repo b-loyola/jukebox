@@ -1,48 +1,79 @@
 body {
   padding-top: 60px;
   background-color: #181a1b;
+  font-family: 'Open Sans'
+}
+
+#playlist {
+  list-style-type: none;
+}
+
+#playlist .list-group-item {
+  background-color: #2a2826;
+  color: white;
+  border-radius: 0px;
+  cursor: pointer;
+}
+
+#playlist .list-group-item:hover {
+  background-color: whitesmoke;
+  color: black;
+  transition: 0.5s;
+}
+
+.btn-success {
+  min-width: 100px;
+}
+
+#player-controls {
+  min-width: inherit;
+}
+
+.control-wrapper {
+  width: 100%;
+}
+
+#previous-song {
+  width: 50%;
+}
+
+#next-song {
+  width: 50%;
 }
 
 #start-play {
   position: relative;
-  left: 45.9%;
-  color: white;
+  color: #2a2826;
+  z-index: 900;
+  
 }
 
-.fa{
-  margin-top: 24.3%;
-}
 
 .jumbotron{
-  width: 100%;
+  vertical-align: bottom;
+/*  width: 100%;
   position:fixed;
   bottom:0%;
   margin: 0%;
   border-radius: 0rem;
-  background-color: rgba(255, 255, 255,0.4);
+  background-color: rgba(255, 255, 255,0.4);*/
 }
 
 .player-container {
-  width: 66%;
   background-image: url("/media/loading.gif");
   background-position: center;
+  text-align: center;
+  display: flex;
+  align-items: center;
 }
 
 #sidebar {
-  position:absolute;
-  top: 22%;
-  margin: 5px;
+  padding: 35px;
 }
-
+/*
 #track-change {
   position:absolute;
   top: 13%;
-  margin: 5px;
-}
-
-#start-play {
-  position:absolute;
-  top: 38%;
   margin: 5px;
 }
 
@@ -50,20 +81,23 @@ body {
   position:fixed;
   top: 45%;
 }
-
+*/
 #slogan {
   position:absolute;
   top: 35%;
   text-align: center;
-  color: rgba(255, 255, 255,0.4);
   font-family: 'Lobster', cursive;
+}
+
+#slogan h1 {
+  color: white;
 }
 
 .navbar-brand {
   font-family: 'Lobster', cursive;
   font-size: 3rem;
 }
-
+/*
 .alert {
   margin-bottom: 0px;
 }
@@ -84,39 +118,38 @@ body {
   width: 100%;
   margin-bottom: 5px;
   margin-top: 5px;
-}
+  width: 150px;
+}*/
 
-.btn-default {
+/*.btn-default {
   color: #fff;
   opacity: 1;
   transition: 1s;
   background-color: #5cb85c;
   border-color: #5cb85c;
   width: 150px;
-}
+}*/
 
-.btn-default:hover {
+/*.btn-default:hover {
   opacity: 1.0;
   transition: 1s;
   color: #fff;
   background-color: #267326;
   border-color: #267326;
-}
+}*/
 
 .btn-success:hover {
   opacity: 1.0;
-  transition: 1s;
+  transition: 0.5s;
   background-color: #267326;
   border-color: #267326;
 }
 
 .song-name {
   color: #bfbfbf;
-  position: fixed;
-  left: 10%;
-  top:91.5%;
+  padding: 35px;
 }
-
+/*
 #success {
   color: #bfbfbf;
   position: fixed;
@@ -127,4 +160,13 @@ body {
 #music-queue {
   color: #bfbfbf;
   cursor: pointer;
+}*/
+
+.btn-circle.btn-xl {
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  font-size: 24px;
+  line-height: 1.33;
+  border-radius: 35px;
 }

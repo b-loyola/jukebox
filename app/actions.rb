@@ -92,9 +92,11 @@ end
 
 get '/rooms/:room_id/songs/all' do
 	content_type :json
-	room = Room.find(params[:room_id])
-	playlist = room.songs
-	{playlist: playlist}.to_json
+	room = Room.find_by(id: params[:room_id])
+	if room
+		playlist = room.songs
+		{playlist: playlist}.to_json
+	end
 end
 
 post '/rooms/:room_id/text' do

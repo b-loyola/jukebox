@@ -1,23 +1,44 @@
 <% if session[:host] == @room.id %>
 
   <div id="player-index" class="row">
-  	<%= erb :'rooms/player' %>
-    <div id="sidebar" class="container">
-      <div class="col-lg-4 col-lg-offset-9 col-md-4 col-md-offset-9 col-sm-4 col-sm-offset-9 col-xs-4 col-xs-offset-9">
 
-        <div class="form-group">
-          <div class="input-group">
-            <input type="text" class="form-control" id="addPhone" name="phone_number" placeholder="Enter 10 digit number...">
-            <span id="text-friend" class="input-group-btn"><button type="submit" class="btn btn-default">Text Friend</button></span>
+    <!-- host player -->
+    <div class="col-xs-12 col-md-8">
+      <%= erb :'rooms/player' %>
+    </div>
+
+    <!-- host sidebar -->
+      <div id="sidebar" class="col-xs-12 col-md-4">
+
+      <!-- player controls -->
+      <div id="player-controls" class="form-group">
+        <div class="input-group control-wrapper">
+          <div class="btn-group btn-group-md control-wrapper" role="group" aria-label="...">
+            <button id="previous-song" class="btn btn-success"><i class="glyphicon glyphicon-fast-backward"></i></button>
+            <button id="next-song" class="btn btn-success"><i class="glyphicon glyphicon-fast-forward"></i></button>
           </div>
         </div>
+      </div>
 
-        <%= erb :'rooms/_song_submit' %>
-        <div id="success"></div>
-        
 
-      </div> 
-    </div> 
+      <!-- text friend button -->
+      <div class="form-group">
+        <div class="input-group">
+          <input type="text" class="form-control" id="addPhone" name="phone_number" placeholder="Enter 10 digit number...">
+          <span id="text-friend" class="input-group-btn"><button type="submit" class="btn btn-success">Text Friend</button></span>
+        </div>
+      </div>
+
+      <!-- song submit button -->
+      <%= erb :'rooms/_song_submit' %>        
+
+      <!-- playlist -->
+      <div id="music-queue">
+        <ul id="playlist" class="list-group"></ul>
+      </div>
+ 
+    </div>
+
   </div>
 
   <div class="song-name">
