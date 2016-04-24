@@ -2,6 +2,10 @@
 
   <div id="player-index" class="row">
 
+    <div class="song-name">
+      <h3>Now Playing: <span id="song_name"></span></h3>
+    </div>
+
     <!-- host player -->
     <div class="col-xs-12 col-md-8">
       <%= erb :'rooms/player' %>
@@ -39,10 +43,6 @@
  
     </div>
 
-  </div>
-
-  <div class="song-name">
-    <h3>Now Playing: <span id="song_name"></span></h3>
   </div>
 
 <% else %>

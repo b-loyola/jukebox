@@ -3,20 +3,16 @@
 		<p class="navbar-brand">JukeTube</p>
 	</div>
 	<% if @room && @room.id %>
-	<div class="navbar-collapse collapse">
-		<ul class="nav navbar-nav navbar-right">
-			<li class="nav-item disabled">
-				<a href="#" class="navbar-info">Room # <%= @room.id %></a>
-			</li>
-			<li class="nav-item disabled">
-				<a href="#" class="navbar-info">Join this room at JukeTube.com</a>
-			</li>
-		</ul>
-	</div>
+		<div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li class="nav-item disabled">
+					<a href="#" class="navbar-info">Room # <%= @room.id %></a>
+				</li>
+				<li class="nav-item disabled">
+					<a href="#" class="navbar-info">Join this room at JukeTube.com</a>
+				</li>
+			</ul>
+		</div>
 	<% end %>
- <!--  <ul class="nav navbar-nav navbar-right">
-    <li><a href="https://github.com/b-silva/jukebox"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a></li>
-    <li><a href="#"></a></li>
-  </ul> -->
 </nav>
 

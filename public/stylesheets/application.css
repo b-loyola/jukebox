@@ -5,18 +5,17 @@ body {
 }
 
 .video-background {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: -100;
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
-    background: url(polina.jpg) no-repeat;
-    background-size: cover;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  background-size: cover;
 }
 
 .spacer {
@@ -31,7 +30,7 @@ body {
   position: fixed;
   top: 50%;
   width: 100%;
-  margin-top: -85px; /* -61px for top nav; -20px for half of height; */
+  margin-top: -85px; 
   font-family: 'Lobster', cursive;
 }
 
@@ -62,6 +61,12 @@ body {
 }
 
 .navbar-inverse .navbar-nav li a.navbar-info {
+  cursor: default;
+  padding-right: 60px;
+  color: whitesmoke;
+}
+
+.navbar-inverse .navbar-nav li a.navbar-info:hover {
   cursor: default;
   padding-right: 60px;
   color: whitesmoke;
@@ -132,7 +137,7 @@ body {
 
 .song-name {
   color: #bfbfbf;
-  padding: 35px;
+  padding-left: 35px;
 }
 
 .btn-circle.btn-xl {
