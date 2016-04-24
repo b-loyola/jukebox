@@ -40,21 +40,9 @@ function onPlayerStateChange(event) {
   }
 }
 
-// Search youtube for a specified string.
-// function search() {
-//   var q = $('#addSong').val();
-//   var request = gapi.client.youtube.search.list({
-//     q: q,
-//     part: 'snippet'
-//   });
-
-//   request.execute(function(response) {
-//     var str = JSON.stringify(response.result);
-//     $('#search-container').html('<pre>' + str + '</pre>');
-//   });
-// }
-
 function changeSong(index) {
+  player.pauseVideo();
+  $('#success').text("Please wait, loading song...").show();
   $.ajax({
     method: 'get',
     url: window.location.pathname + '/songs/change/' + index, // <-- get '/rooms/:room_id/next'
@@ -62,6 +50,7 @@ function changeSong(index) {
   }).then(function success(result) {
     window.currentSongIndex = index;
     window.currentSong = result.song;
+    $('#success').fadeOut(300);
     playVideo(result.song.url);
     $("#song_name").text(result.song.title);
   }, function errorAdd(err){
@@ -118,10 +107,12 @@ $(document).ready(function() {
   });
 
   $("#next-song, #previous-song").on("click", function() {
-    changeSong(window.currentSongIndex + ($(this).id == "next-song" ? 1 : -1));
+    changeSong(window.currentSongIndex + ($(this).attr('id') == "next-song" ? 1 : -1));
   });
 
   $("#playlist").on("click", ".song", function() {
+    player.pauseVideo();
+    $('#success').text("Please wait, loading song...").show();
     id = $(this).data("song-id");
     $.ajax({
       method: 'get',
@@ -131,6 +122,7 @@ $(document).ready(function() {
       window.currentSongIndex = result.index;
       window.currentSong = result.song;
       playVideo(result.song.url);
+      $('#success').fadeOut(300);
       $("#song_name").text(result.song.title);
       $("#start-play").hide();
     }, function errorPlay(err){

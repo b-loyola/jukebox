@@ -9,7 +9,7 @@ class Room < ActiveRecord::Base
 
 	def play_song(id)
 		song = self.songs.find(id)
-		self.song_counter = self.songs.find_index(song)
+		self.update_attributes(song_counter: self.songs.find_index(song))
 		song
 	end
 

@@ -24,7 +24,7 @@ body {
 
 .player-container {
   width: 66%;
-  background-image: url("http://0.media.collegehumor.cvcdn.com/27/71/05fc6c034ee9c6c942a9b9fe8d1149b2.gif");
+  background-image: url("/media/loading.gif");
   background-position: center;
 }
 
