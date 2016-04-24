@@ -29,14 +29,20 @@ body {
 }
 
 #sidebar {
-  /*position:fixed;*/
-  /*top: 10%;*/
+  position:absolute;
+  top: 22%;
+  margin: 5px;
+}
+
+#track-change {
+  position:absolute;
+  top: 13%;
   margin: 5px;
 }
 
 #start-play {
-  /*position:fixed;*/
-  /*top: 25%;*/
+  position:absolute;
+  top: 38%;
   margin: 5px;
 }
 
@@ -50,6 +56,7 @@ body {
   top: 35%;
   text-align: center;
   color: rgba(255, 255, 255,0.4);
+  font-family: 'Lobster', cursive;
 }
 
 .navbar-brand {
@@ -59,6 +66,16 @@ body {
 
 .alert {
   margin-bottom: 0px;
+}
+
+.btn-group-md {
+  padding: .75rem 1.25rem;
+  font-size: 1.25rem;
+  line-height: 1.333333;
+  border-radius: .3rem;
+  width: 100%;
+  margin-bottom: 5px;
+  left: 28px;
 }
 
 .btn-success {
@@ -93,6 +110,21 @@ body {
   border-color: #267326;
 }
 
+.song-name {
+  color: #bfbfbf;
+  position: fixed;
+  left: 10%;
+  top:91.5%;
+}
+
 #success {
   color: #bfbfbf;
+  position: fixed;
+  left: 22%;
+  top:90%;
+}
+
+#music-queue {
+  color: #bfbfbf;
+  cursor: pointer;
 }
