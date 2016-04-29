@@ -17,7 +17,7 @@ require 'sinatra/contrib/all' # Requires cookies, among other things
 require 'yt'
 require 'twilio-ruby'
 
-require 'awesome_print'
+# require 'awesome_print'
 
 
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
