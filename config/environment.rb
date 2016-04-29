@@ -1,7 +1,7 @@
-if development?
-  require 'dotenv'
-  Dotenv.load
-end
+# if development?
+#   require 'dotenv'
+#   Dotenv.load
+# end
 
 require 'rubygems'
 require 'bundler/setup'
@@ -13,7 +13,7 @@ require 'sinatra'
 require 'sinatra/activerecord'
 require 'sinatra/contrib/all' # Requires cookies, among other things
 
-require 'pry' if development?
+# require 'pry' if development?
 require 'yt'
 require 'twilio-ruby'
 
