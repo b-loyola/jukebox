@@ -1,5 +1,7 @@
-require 'dotenv'
-Dotenv.load
+if development?
+  require 'dotenv'
+  Dotenv.load
+end
 
 require 'rubygems'
 require 'bundler/setup'
