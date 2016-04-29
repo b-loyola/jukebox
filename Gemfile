@@ -20,3 +20,7 @@ group :development, :test do
   gem 'dotenv'
   gem 'awesome_print'
 end
+
+group :production do
+	gem 'pg'
+end
