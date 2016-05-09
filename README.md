@@ -1,10 +1,8 @@
-Sinatra
+Juketube
 =============
 
-Brought to you by Lighthouse Labs
+A Youtube Jukebox for parties and gatherings. The host creates a room and invites the guests to join, and everyone can add songs (or cat videos) to the queue. The videos will play in order, and upon reaching the end of the playlist, the app will choose a previously played video. 
 
-## Getting Started
+See demo [here](http://juketub.herokuapp.com/rooms).
 
-1. `bundle install`
-2. `shotgun -p 3000 -o 0.0.0.0`
-3. Visit `http://localhost:3000/` in your browser
+
